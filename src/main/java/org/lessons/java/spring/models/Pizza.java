@@ -15,6 +15,9 @@ public class Pizza {
 	@Column(length = 255, nullable = false)
 	private String name;
 
+	@Column(length = 255, nullable = false)
+	private String description;
+
 	@Column(length = 255, nullable = true)
 	private String url;
 
@@ -25,14 +28,19 @@ public class Pizza {
 	private Pizza() {
 	} // Just for Spring
 
-	public Pizza(String name, String url, float price) throws IllegalArgumentException {
+	public Pizza(String name, String description, String url, float price) throws IllegalArgumentException {
 		setName(name);
+		setDescription(description);
 		setUrl(url);
 		setPrice(price);
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setUrl(String url) {
@@ -46,8 +54,16 @@ public class Pizza {
 			this.price = price;
 	}
 
+	public long getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public String getUrl() {
