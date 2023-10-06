@@ -4,7 +4,8 @@
     </div>
     <div class="card-body">
         <div class="img-container">
-            <img th:src="@{${pizza.getUrl()}}" th:alt="${pizza.getName()}">
+            <img th:if="${pizza.getUrl()} != null" th:src="@{${pizza.getUrl()}}" th:alt="${pizza.getName()}">
+            <img th:unless="${pizza.getUrl()} != null" th:src="@{/images/pizza.jpg}" th:alt="${pizza.getName()}">
         </div>
 
         <div class="info-container">

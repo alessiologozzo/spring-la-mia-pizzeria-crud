@@ -1,6 +1,6 @@
 :root {
 	--primary_color: #1f1f1f;
-	--secondary_color: #454545; 
+	--secondary_color: #454545;
 }
 
 body {
@@ -9,7 +9,7 @@ body {
 }
 
 .card-body {
-	min-height: 200px;	
+	min-height: 200px;
 }
 
 img {
@@ -18,7 +18,8 @@ img {
 	height: 100%;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
 	min-width: 250px;
 	background-color: aliceblue;
 	padding: 0.2rem;
@@ -101,11 +102,11 @@ input[type="text"] {
 }
 
 legend {
-  color: white;
-  padding: 5px 10px;
-  border-radius: 0;
-  border: 0;
-  font-size: 14px;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 0;
+	border: 0;
+	font-size: 14px;
 }
 
 .show-img-container {
@@ -115,6 +116,27 @@ legend {
 	overflow: hidden;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
 	margin-bottom: 0;
+}
+
+.add {
+	border-radius: 6px;
+	border: 1px solid black;
+	transition: all 300ms;
+}
+
+.add:hover {
+	transform: scale(1.20);
+	opacity: 0.8;
+	border-radius: 50%;
+}
+
+.dec-none {
+	text-decoration: none;
+	color: whitesmoke;
 }

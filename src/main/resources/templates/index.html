@@ -6,10 +6,13 @@
 <body>
     <h1 class="text-center pt-4 pb-5">Pizze</h1>
 
-    <div class="container pt-3">
+    <div class="container pt-3 pb-5">
         <div th:if="${pizzas} != null">
 
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between gap-5 flex-wrap">
+                <a th:href="@{/create}" class="d-block dec-none me-5">
+                    <i class="fa-solid fa-plus fs-1 bg-success p-4 d-block add"></i>
+                </a>
                 <form
                     class="d-flex flex-column justify-content-start align-items-center al-bg-secondary gap-3 p-4 al-border">
                     <h2>Filtri</h2>
