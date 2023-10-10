@@ -1,8 +1,16 @@
-<a th:fragment="pizzaCard(pizza)" th:href="@{/pizza/{id}(id=${pizza.getId()})}" class="pizza-card">
+<form th:fragment="pizzaCard(pizza)" th:action="@{/pizza/{id}(id=${pizza.getId()})}" method="get" class="pizza-card">
     <div class="card-head">
         <h5 th:text="${pizza.getName()}"></h5>
     </div>
     <div class="card-body">
+        
+        <div class="actions">
+            <i class="fa-solid fa-trash trash-icon" data-bs-toggle="modal" data-bs-target="#deleteModal" th:attr="onclick=|setPizzaData(${pizza.getId()}, '${pizza.getName()}')|"></i>
+            <a th:href="@{/edit/{id}(id=${pizza.getId()})}" class="edit-icon">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+        </div>
+
         <div class="img-container">
             <img th:if="${pizza.getUrl()} != null" th:src="@{${pizza.getUrl()}}" th:alt="${pizza.getName()}">
             <img th:unless="${pizza.getUrl()} != null" th:src="@{/images/pizza.jpg}" th:alt="${pizza.getName()}">
@@ -21,4 +29,5 @@
             
         </div>
     </div>
-</a>
+    <input type="submit" class="hidden-submit">
+</form>

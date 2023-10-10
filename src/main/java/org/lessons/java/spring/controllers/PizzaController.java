@@ -26,7 +26,7 @@ public class PizzaController {
 	public String index(Model model, @RequestParam(required = false) String name,
 			@RequestParam(required = false) String orderBy) {
 		List<Pizza> pizzas = null;
-		boolean search = false;
+		boolean search = false, isEmpty = false;
 		String oldOrderBy = "default";
 
 		if (name == null || name.equals(""))
@@ -35,6 +35,9 @@ public class PizzaController {
 			pizzas = pizzaService.findByNameContaining(name);
 			search = true;
 		}
+
+		if (pizzas == null || pizzas.size() < 1)
+			isEmpty = true;
 
 		if (orderBy != null) {
 			oldOrderBy = orderBy;
@@ -47,6 +50,7 @@ public class PizzaController {
 		}
 
 		model.addAttribute("pizzas", pizzas);
+		model.addAttribute("isEmpty", isEmpty);
 		model.addAttribute("search", search);
 		model.addAttribute("oldName", name);
 		model.addAttribute("oldOrderBy", oldOrderBy);
@@ -77,6 +81,38 @@ public class PizzaController {
 			pizzaService.save(pizza);
 
 		return result;
+	}
+
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable long id, Model model) {
+		Pizza pizza = pizzaService.findById(id);
+		model.addAttribute("pizza", pizza);
+
+		return "edit.html";
+	}
+
+	@PostMapping("/update/{id}")
+	public String update(@Valid @ModelAttribute Pizza pizza, @PathVariable long id, BindingResult bindingResult,
+			Model model) {
+		String result = "redirect:/";
+
+		if (bindingResult.hasErrors())
+			result = "edit.html";
+		else {
+			Pizza pizzaToUpdate = pizzaService.findById(id);
+			pizzaToUpdate.setName(pizza.getName());
+			pizzaToUpdate.setDescription(pizza.getDescription());
+			pizzaToUpdate.setPrice(pizza.getPrice());
+			pizzaService.save(pizzaToUpdate);
+		}
+
+		return result;
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable long id) {
+		pizzaService.deleteById(id);
+		return "redirect:/";
 	}
 
 	@GetMapping("/error")

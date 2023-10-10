@@ -38,4 +38,8 @@ public class PizzaService {
 	public List<Pizza> findByNameContaining(String name) {
 		return pizzaRepository.findByNameContaining(name);
 	}
+
+	public void deleteById(long id) {
+		pizzaRepository.deleteById(id);
+	}
 }

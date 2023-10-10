@@ -41,6 +41,7 @@ input[type="number"] {
 	transition: transform 300ms;
 	color: whitesmoke;
 	text-decoration: none;
+	position: relative;
 }
 
 .pizza-card:hover {
@@ -75,6 +76,11 @@ input[type="number"] {
 	opacity: 0.2;
 }
 
+.pizza-card:hover .trash-icon,
+.pizza-card:hover .edit-icon {
+	opacity: 1
+}
+
 .pizza-card .card-body .info-container {
 	display: flex;
 	flex-direction: column;
@@ -89,6 +95,44 @@ input[type="number"] {
 	overflow: hidden;
 	z-index: -1;
 	padding: 0.3rem;
+}
+
+.actions {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	padding: 0.2rem 0.5rem;
+}
+
+.trash-icon {
+	font-size: 1.2rem;
+	color: orangered;
+	opacity: 0;
+	transition: all 300ms;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.trash-icon:hover {
+	transform: scale(1.1);
+	color: darkorange;
+}
+
+.edit-icon {
+	font-size: 1.2rem;
+	color: greenyellow;
+	opacity: 0;
+	transition: all 300ms;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.edit-icon:hover {
+	transform: scale(1.1);
+	color: lightgreen;
 }
 
 .al-bg-secondary {
@@ -139,4 +183,13 @@ h6 {
 .dec-none {
 	text-decoration: none;
 	color: whitesmoke;
+}
+
+.hidden-submit {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
 }
